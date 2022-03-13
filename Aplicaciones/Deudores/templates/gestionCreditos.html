@@ -1,0 +1,78 @@
+{% extends "./base.html" %}
+
+{% block tittle %} deudores{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+        <h1>Listado de deudores</h1>
+        <div class="table-responsive py-2">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th>Crédito</th>
+                            <th>Valor</th>
+                            <th>Plazo</th>
+                            <th>Cuota</th>   
+                            <th colspan="2">Opciones</th>                      
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in clientes %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{c.identificacion}}</td>
+                                <td>{{c.nombre}}</td>
+                                <td>{{c.idCredito}}</td>
+                                <td>{{c.valor}}</td>
+                                <td>{{c.plazo}}</td>
+                                <td>{{c.cuota}}</td>
+                                <td><a href="editarCliente/{{c.identificacion}}" class="btn btn-info">Editar</a></td>
+                                <td><a href="eliminarCliente/{{c.identificacion}}" class="btn btn-danger">Eliminar</a></td>                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <h2>Gestión de deudores</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarCliente/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="numIdentificacion" name="numIdentificacion" class="form-control" placeholder="Identificación" minlength="6" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numCredito" name="numCredito" class="form-control" placeholder="Número Crédito" minlength="6" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numValor" name="numValor" class="form-control" placeholder="Valor" minlength="7" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numPlazo" name="numPlazo" class="form-control" placeholder="Plazo" minlength="1" maxlength="2" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numCuota" name="numCuota" class="form-control" placeholder="Cuota" minlength="5" maxlength="10" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">Guardar</button>                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "./base.html" %}
+
+{% block tittle %} Editar Cliente {% endblock %}
+
+{% block body %}
+<div class="rom">
+    <div class="col-md-4 offset-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>Editar deudor</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/edicionCliente/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="numIdentificacion" name="numIdentificacion" class="form-control" value="{{cliente.identificacion}}" minlength="6" maxlength="10" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{cliente.nombre}}" maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="numCredito" name="numCredito" class="form-control" value="{{cliente.idCredito}}" Crédito" minlength="6" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="numValor" name="numValor" class="form-control" value="{{cliente.valor}}" minlength="7" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="numPlazo" name="numPlazo" class="form-control" value="{{cliente.plazo}}" minlength="1" maxlength="2" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="numCuota" name="numCuota" class="form-control" value="{{cliente.cuota}}" minlength="5" maxlength="10" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit">Guardar</button>                        
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
